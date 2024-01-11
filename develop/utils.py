@@ -26,3 +26,13 @@ def get_operations_with_from(operations):
                 Фильтруем все операции, чтобы получить только с пунктом 'from'
     """
     return [operation for operation in operations if "from" in operation]
+
+
+def get_last_five_operations(operations_with_from, num_of_operations):
+    """
+                    Фильтруем все операции в reverse, чтобы получить только последние 5,
+                    соответсвующие условиям задания
+    """
+    sorted_operations = sorted(operations_with_from, key=lambda operation: operation["date"], reverse=True)
+    last_five_operations = sorted_operations[0:num_of_operations]
+    return last_five_operations

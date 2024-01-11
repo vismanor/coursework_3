@@ -43,3 +43,16 @@ class Operation:
                                                     f"{transaction_method_number[4:6]}"
                                                     f"{'*' * 2} {'*' * 4} {transaction_method_number[-4:]}")
             return hidden_transaction_method_number
+
+    def hide_account_number(self):
+        """
+                Получаем данные о носителе, на который была совершена транзакция,
+                скрываем его номер определенным способом
+                :return: скрытый номер карты/счета
+        """
+        if self.to:
+            account_number = self.to.replace(" ", "").replace("*", "")
+            if any(destination_type in self.to for destination_type in [" ", "  ", "\n", "\t"]):
+                destination_type = self.to.split()[0]
+                hidden_account_number = f"{destination_type} **{account_number[-4:]}"
+                return hidden_account_number

@@ -3,7 +3,7 @@ from operation_class import Operation
 
 
 def main():
-    filename = "operations.json"
+    filename = "develop/operations.json"
     data = load_data(filename)
     executed_operations = get_executed_operations(data)
     operations_with_from = get_operations_with_from(executed_operations)

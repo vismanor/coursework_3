@@ -56,3 +56,11 @@ class Operation:
                 destination_type = self.to.split()[0]
                 hidden_account_number = f"{destination_type} **{account_number[-4:]}"
                 return hidden_account_number
+
+    def __str__(self):
+        """
+                Приводим все данные к шаблонному виду, требуемому в задании
+                :return: корректный вид данных проведенной операции
+        """
+        return (f"{self.date} {self.description}\n{self.hide_transaction_method_number()} -> "
+                f"{self.hide_account_number()}\n{self.amount} {self.currency}\n")

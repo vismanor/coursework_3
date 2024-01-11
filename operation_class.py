@@ -25,3 +25,21 @@ class Operation:
         self.description = description
         self.from_ = from_
         self.to = to
+
+    def hide_transaction_method_number(self):
+        """
+                Получаем данные о носителе, с которого была совершена транзакция,
+                скрываем его номер определенным способом
+                :return: скрытый номер карты/счета
+        """
+        if self.from_:
+            transaction_method_number = ''.join(filter(lambda x: x.isdigit(), self.from_))
+
+            if "Счет" in self.from_:
+                hidden_transaction_method_number = f"{self.from_.split()[0]} **{transaction_method_number[-4:]}"
+            else:
+                card_type = self.from_.replace(transaction_method_number, "").strip()
+                hidden_transaction_method_number = (f"{card_type} {transaction_method_number[:4]} "
+                                                    f"{transaction_method_number[4:6]}"
+                                                    f"{'*' * 2} {'*' * 4} {transaction_method_number[-4:]}")
+            return hidden_transaction_method_number

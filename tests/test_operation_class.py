@@ -23,4 +23,3 @@ def test_hide_account_number():
                    to="Счет 1456 1111 2222 2233 4455")
     hidden_number = op.hide_account_number()
     assert hidden_number == "Счет **4455"
-
